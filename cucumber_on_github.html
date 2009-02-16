@@ -1,0 +1,37 @@
+<html><head><title>Gherkin with Github colors</title><link rel="stylesheet" href="github.css"></head><body>
+<div class="highlight"><pre><span class="nc">Feature:</span><span class="no"> proof of concept</span>
+
+  In order to read Cucumber features faster and eaiser on Github 
+  As a Cucumber user
+  I want to have syntax highlighting for Gherkin
+
+  <span class="nc">Background:</span>
+    <span class="k">Given</span> cheese is good
+
+  <span class="nc">Scenario Outline:</span><span class="no"> this is a test </span>
+    <span class="k">Given</span> I have a <span class="o">&lt;</span><span class="ss">var1</span><span class="o">&gt;</span> and some <span class="s">&quot;string&quot;</span>
+    <span class="k">And</span> the following table and some <span class="s">&#39;string&#39;</span>
+      | header 1  | header 2  |
+      | cell 1-1  | cell 1-2  |
+      | cell 2-1  | &quot;cell 2-2&quot;|
+
+    <span class="k">When</span> I do <span class="o">&lt;</span><span class="ss">var2</span><span class="o">&gt;</span>
+    <span class="k">And</span> here is a string with single and double quotes- <span class="s">&quot;i&#39;ll be back&quot;</span> 
+
+    <span class="k">Then</span> I should see something...
+    <span class="k">But</span> not something else...
+
+  <span class="nc">Examples:</span>
+    | var1  |  var2  |
+    | foo   |  bar   |
+    | dog   |  food  |
+
+  <span class="nc">Scenario:</span><span class="no"> more examples</span>
+    <span class="k">Given</span> some context<span class="c"># this is a inline comment</span>
+    <span class="c"># This is a comment</span>
+<span class="c"># So is this with no space at front...</span>
+</pre></div>
+
+ </body>
+</html>
+
