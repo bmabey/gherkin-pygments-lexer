@@ -11,19 +11,23 @@ class GherkinLexer(RegexLexer):
     filenames = ['*.feature', '*.story']
 
     tokens = {
-        'keywords': [
-            (r'(Given|When|Then|And|But)\b', Keyword)
+        'scenario_table_header': [
+            (r"\s+\|", Text),
+            (r"(.*)(\|)\s*$", bygroups(Literal.String.Symbol, Text), "#pop"),
+            (r"(.*)(\|)", bygroups(Literal.String.Symbol, Text)),
             ],
         'root': [
             (r'\n', Text),
-            (r'\s', Text),
             (r'("[^"]*")', String),
             (r"('[^']*')", String),
             (r'(<)([^>]*)(>)', bygroups(Operator, Literal.String.Symbol, Operator)),
             (r'#.*$', Comment),
-            include('keywords'),
+            (r'(Given|When|Then|And|But)', Keyword),
             (r"\|(.*)\|", Text),
-            (r'(\s*)(Feature|Story|Background|Examples|Scenario|Scenario Outline)(:)(.*)$', bygroups(Text, Name.Class, Name.Class, Name.Constant)),
+            (r'^(Feature:|Story:)(.*)$', bygroups(Name.Class, Name.Constant)),
+            (r'(\s+)(Background|Scenario|Scenario Outline)(:)(.*)$', bygroups(Text, Name.Class, Name.Class, Name.Constant)),
+            (r'\s+(Examples:).*$', Name.Class, "scenario_table_header"),
+            (r'\s', Text),
             (r'.', Text)
         ]
 
