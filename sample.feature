@@ -10,7 +10,7 @@ Feature: proof of concept
   Scenario Outline: this is a test 
     Given I have a <var1> and some "string"
     And the following table and some 'string'
-      | header 1  | header 2  |
+      | header 1  | header 2  | # here is a comment after a table
       | cell 1-1  | cell 1-2  |
       | cell 2-1  | "cell 2-2"|
 
