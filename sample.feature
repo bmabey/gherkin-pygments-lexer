@@ -16,6 +16,8 @@ Feature: proof of concept
 
     When I do <var2>
     And here is a string with single and double quotes- "i'll be back" 
+    And here is a string with the opposite 'the quote is "Foo"'
+    And what about a var in a quote like so: "<var2>"
 
     Then I should see something...
     But not something else...

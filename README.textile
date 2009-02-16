@@ -6,3 +6,4 @@ Please send me any suggestions you have on how to improve it.. Pull requests are
 
 **TODO**
 * Highlight the table headers the same color as I am highlighting the vars in the brackets.
+* Generate keywords for all languages like we do in the TM bundle.

@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 from pygments.lexer import RegexLexer, bygroups, include
 from pygments.token import *
 from pygments import highlight
