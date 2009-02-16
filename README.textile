@@ -1,0 +1,8 @@
+This is a "pygments":http://pygments.org/ lexer for Gherkin- the language that "Cucumber":http://cukes.info knows.
+
+Once I am happy with it I will submit a patch to pygments so that Github will start syntax highlighting all *.feature files!
+
+Please send me any suggestions you have on how to improve it.. Pull requests are even better. ;)
+
+TODO
+  * I would like to highlight the table headers the same color as I am highlighting the <vars>
