@@ -6,14 +6,13 @@ from pygments.formatters import HtmlFormatter
 import sys
 
 class GherkinLexer(RegexLexer):
-    name = 'Cucumber'
-    aliases = ['cucumber', 'gherkin', 'bdd']
+    name = 'Gherkin'
+    aliases = ['Cucumber', 'cucumber', 'gherkin', 'bdd']
     filenames = ['*.feature', '*.story']
 
     tokens = {
         #'step_table_header': [
             #(r"\s+\|\s*$", Text, "#pop"),
-            #(r"\s+\|", Text),
             #(r"[^\|]", Literal.String.Symbol),
             #],
         'scenario_table_header': [
@@ -21,6 +20,10 @@ class GherkinLexer(RegexLexer):
             (r"\s+\|", Text),
             (r"[^\|]", Literal.String.Symbol),
             ],
+        'narrative': [
+            (r'(\s+)(Background|Scenario|Scenario Outline)(:)(.*)$', bygroups(Text, Name.Class, Name.Class, Name.Constant), "#pop"),
+            (r'.', Comment),
+          ],
         'root': [
             (r'\n', Text),
             (r'("[^"]*")', String),
