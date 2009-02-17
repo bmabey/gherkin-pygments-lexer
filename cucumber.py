@@ -11,10 +11,15 @@ class GherkinLexer(RegexLexer):
     filenames = ['*.feature', '*.story']
 
     tokens = {
+        #'step_table_header': [
+            #(r"\s+\|\s*$", Text, "#pop"),
+            #(r"\s+\|", Text),
+            #(r"[^\|]", Literal.String.Symbol),
+            #],
         'scenario_table_header': [
+            (r"\s+\|\s*$", Text, "#pop"),
             (r"\s+\|", Text),
-            (r"(.*)(\|)\s*$", bygroups(Literal.String.Symbol, Text), "#pop"),
-            (r"(.*)(\|)", bygroups(Literal.String.Symbol, Text)),
+            (r"[^\|]", Literal.String.Symbol),
             ],
         'root': [
             (r'\n', Text),
@@ -23,7 +28,6 @@ class GherkinLexer(RegexLexer):
             (r'(<)([^>]*)(>)', bygroups(Operator, Literal.String.Symbol, Operator)),
             (r'#.*$', Comment),
             (r'(Given|When|Then|And|But)', Keyword),
-            (r"\|(.*)\|", Text),
             (r'^(Feature:|Story:)(.*)$', bygroups(Name.Class, Name.Constant)),
             (r'(\s+)(Background|Scenario|Scenario Outline)(:)(.*)$', bygroups(Text, Name.Class, Name.Class, Name.Constant)),
             (r'\s+(Examples:).*$', Name.Class, "scenario_table_header"),
