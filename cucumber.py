@@ -30,10 +30,11 @@ class GherkinLexer(RegexLexer):
             (r"('[^']*')", String),
             (r'(<)([^>]*)(>)', bygroups(Operator, Literal.String.Symbol, Operator)),
             (r'#.*$', Comment),
+            (r'@\w+', Operator),
             (r'(Given|When|Then|And|But)', Keyword),
-            (r'^(Feature:|Story:)(.*)$', bygroups(Name.Class, Name.Constant)),
+            (r'^(Feature|Story)(:)(.*)$', bygroups(Name.Class, Name.Class, Name.Constant)),
             (r'(\s+)(Background|Scenario|Scenario Outline)(:)(.*)$', bygroups(Text, Name.Class, Name.Class, Name.Constant)),
-            (r'\s+(Examples:).*$', Name.Class, "scenario_table_header"),
+            (r'(\s+)(Scenarios|Examples)(:)(.*)$', bygroups(Text, Name.Class, Name.Class, Name.Constant), "scenario_table_header"),
             (r'\s', Text),
             (r'.', Text)
         ]
