@@ -45,7 +45,7 @@ class GherkinLexer(RegexLexer):
         'single_string': [
             (r"'", String, "#pop"),
             (r'(<)([^>]*)(>)', bygroups(Operator, Literal.String.Symbol, Operator)),
-            (r"(\s|.)", String),
+            (r"[^']", String),
             ],
         'root': [
             (r'\n', Text),
@@ -54,7 +54,7 @@ class GherkinLexer(RegexLexer):
             (r"'", String, "single_string"),
             (r'(<)([^>]*)(>)', bygroups(Operator, Literal.String.Symbol, Operator)),
             (r'#.*$', Comment),
-            (r'@\w+', Name.Namespace),
+            (r'@[^@\s]+', Name.Namespace),
             (r'(Given|When|Then|And|But)', Keyword),
             (r'^(Feature|Story)(:)(.*)$', bygroups(Name.Class, Name.Class, Name.Constant), 'narrative'),
             (r'(\s+)(Background|Scenario|Scenario Outline)(:)(.*)$', bygroups(Text, Name.Class, Name.Class, Name.Constant), "multiline_descriptions"),

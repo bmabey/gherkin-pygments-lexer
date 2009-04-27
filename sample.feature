@@ -1,4 +1,4 @@
-@foo @bar # some comment
+@foo34 @bar # some comment
 Feature: proof of concept
 
   In order to read Cucumber features faster and eaiser on Github 
