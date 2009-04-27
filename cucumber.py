@@ -18,19 +18,19 @@ class GherkinLexer(RegexLexer):
             (r'(Given|When|Then|And|But)', Keyword, "#pop"),
             include('comments'),
             (r"(\s|.)", Name.Constant),
-            ],
+          ],
         'scenario_table_description': [
             (r"\s+\|", Text, 'scenario_table_header'),
             include('comments'),
             (r"(\s|.)", Name.Constant),
-            ],
+          ],
         'scenario_table_header': [
             (r"\s+\|\s*$", Text, "#pop:2"),
             (r"(\s+\|\s*)(#.*)$", bygroups(Text, Comment), "#pop:2"),
             include('comments'),
             (r"\s+\|", Text),
             (r"[^\|]", Literal.String.Symbol),
-            ],
+          ],
         'narrative': [
             (r'(\s+)(Background|Scenario|Scenario Outline)(:)(.*)$', bygroups(Text, Name.Class, Name.Class, Name.Constant), "#pop"),
             (r"(\s|.)", Name.Builtin),
