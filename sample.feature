@@ -6,9 +6,6 @@ Feature: proof of concept
   I want to have syntax highlighting for Gherkin
   This is part of the narrative, even if I have the # symbol, it is still the narrative- not a comment
 
-  Background: this is description
-    Given cheese is good
-
   Background: this is multi-line description
     do you like it?
     Given cheese is good

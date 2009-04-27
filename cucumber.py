@@ -19,6 +19,11 @@ class GherkinLexer(RegexLexer):
             include('comments'),
             (r"(\s|.)", Name.Constant),
           ],
+        'multiline_descriptions_on_stack' : [
+          (r'(Given|When|Then|And|But)', Keyword, "#pop:2"),
+            include('comments'),
+            (r"(\s|.)", Name.Constant),
+          ],
         'scenario_table_description': [
             (r"\s+\|", Text, 'scenario_table_header'),
             include('comments'),
@@ -31,8 +36,11 @@ class GherkinLexer(RegexLexer):
             (r"\s+\|", Text),
             (r"[^\|]", Literal.String.Symbol),
           ],
+        'scenario_sections_on_stack': [
+            (r'(\s+)(Background|Scenario|Scenario Outline)(:)(.*)$', bygroups(Text, Name.Class, Name.Class, Name.Constant), "multiline_descriptions_on_stack"),
+            ],
         'narrative': [
-            (r'(\s+)(Background|Scenario|Scenario Outline)(:)(.*)$', bygroups(Text, Name.Class, Name.Class, Name.Constant), "#pop"),
+            include('scenario_sections_on_stack'),
             (r"(\s|.)", Name.Builtin),
           ],
         'table_vars': [

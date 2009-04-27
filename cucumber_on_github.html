@@ -6,9 +6,6 @@
 <span class="nb">  I want to have syntax highlighting for Gherkin</span>
 <span class="nb">  This is part of the narrative, even if I have the # symbol, it is still the narrative- not a comment</span>
 
-  <span class="nc">Background:</span><span class="no"> this is description</span>
-    <span class="k">Given</span> cheese is good
-
   <span class="nc">Background:</span><span class="no"> this is multi-line description</span>
 <span class="no">    do you like it?</span>
 <span class="no">    </span><span class="k">Given</span> cheese is good
@@ -55,15 +52,15 @@
     <span class="c"># This is a comment</span>
 <span class="c"># So is this with no space at front...</span>
 
-Funktionalität: Addition
+FunktionalitÃ¤t: Addition
   Um dumme Fehler zu vermeiden
-  möchte ich als Matheidiot
+  mÃ¶chte ich als Matheidiot
   die Summe zweier Zahlen gesagt bekommen
 
-  Szenariogrundriss: Zwei Zahlen hinzufügen
+  Szenariogrundriss: Zwei Zahlen hinzufÃ¼gen
     Gegeben sei ich habe <span class="o">&lt;</span><span class="ss">Eingabe_1</span><span class="o">&gt;</span> in den Taschenrechner eingegeben
     Und ich habe <span class="o">&lt;</span><span class="ss">Eingabe_2</span><span class="o">&gt;</span> in den Taschenrechner eingegeben
-    Wenn ich <span class="o">&lt;</span><span class="ss">Knopf</span><span class="o">&gt;</span> drücke
+    Wenn ich <span class="o">&lt;</span><span class="ss">Knopf</span><span class="o">&gt;</span> drÃ¼cke
     Dann sollte das Ergebniss auf dem Bildschirm <span class="o">&lt;</span><span class="ss">Ausgabe</span><span class="o">&gt;</span> sein
 
   Beispiele:
@@ -78,7 +75,7 @@ Funktionalität: Addition
 <span class="nb">  I want to be told the sum of two numbers</span>
 
   <span class="nc">Scenario Outline:</span><span class="no"> Add two numbers</span>
-    <span class="k">Given</span> I have entered <span class="o">&lt;</span><span class="ss">input_1</span><span class="o">&gt;</span> into the calculator
+<span class="no">    </span><span class="k">Given</span> I have entered <span class="o">&lt;</span><span class="ss">input_1</span><span class="o">&gt;</span> into the calculator
     <span class="k">And</span> I have entered <span class="o">&lt;</span><span class="ss">input_2</span><span class="o">&gt;</span> into the calculator
     <span class="k">When</span> I press <span class="o">&lt;</span><span class="ss">button</span><span class="o">&gt;</span>
     <span class="k">Then</span> the result should be <span class="o">&lt;</span><span class="ss">output</span><span class="o">&gt;</span> on the screen
