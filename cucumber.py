@@ -35,8 +35,11 @@ class GherkinLexer(RegexLexer):
             (r'(\s+)(Background|Scenario|Scenario Outline)(:)(.*)$', bygroups(Text, Name.Class, Name.Class, Name.Constant), "#pop"),
             (r"(\s|.)", Name.Builtin),
           ],
-        'string': [
+        'table_vars': [
             (r'(<)([^>]*)(>)', bygroups(Operator, Literal.String.Symbol, Operator)),
+          ],
+        'string': [
+            include('table_vars'),
             (r'(\s|.)', String),
           ],
         'py_string': [
@@ -57,7 +60,7 @@ class GherkinLexer(RegexLexer):
             (r'"""', String, "py_string"),
             (r'"', String, "double_string"),
             (r"'", String, "single_string"),
-            (r'(<)([^>]*)(>)', bygroups(Operator, Literal.String.Symbol, Operator)),
+            include('table_vars'),
             (r'@[^@\s]+', Name.Namespace),
             (r'(Given|When|Then|And|But)', Keyword),
             (r'^(Feature|Story)(:)(.*)$', bygroups(Name.Class, Name.Class, Name.Constant), 'narrative'),
