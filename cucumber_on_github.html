@@ -54,6 +54,40 @@
 <span class="no">    </span><span class="k">Given</span> some context<span class="c"># this is an inline comment</span>
     <span class="c"># This is a comment</span>
 <span class="c"># So is this with no space at front...</span>
+
+Funktionalität: Addition
+  Um dumme Fehler zu vermeiden
+  möchte ich als Matheidiot
+  die Summe zweier Zahlen gesagt bekommen
+
+  Szenariogrundriss: Zwei Zahlen hinzufügen
+    Gegeben sei ich habe <span class="o">&lt;</span><span class="ss">Eingabe_1</span><span class="o">&gt;</span> in den Taschenrechner eingegeben
+    Und ich habe <span class="o">&lt;</span><span class="ss">Eingabe_2</span><span class="o">&gt;</span> in den Taschenrechner eingegeben
+    Wenn ich <span class="o">&lt;</span><span class="ss">Knopf</span><span class="o">&gt;</span> drücke
+    Dann sollte das Ergebniss auf dem Bildschirm <span class="o">&lt;</span><span class="ss">Ausgabe</span><span class="o">&gt;</span> sein
+
+  Beispiele:
+    | Eingabe_1 | Eingabe_2 | Knopf | Ausgabe |
+    | 20        | 30        | add   | 50      |
+    | 2         | 5         | add   | 7       |
+    | 0         | 40        | add   | 40      |
+
+<span class="nc">Feature:</span><span class="no"> Addition</span><span class="nb"></span>
+<span class="nb">  In order to avoid silly mistakes</span>
+<span class="nb">  As a math idiot </span>
+<span class="nb">  I want to be told the sum of two numbers</span>
+
+  <span class="nc">Scenario Outline:</span><span class="no"> Add two numbers</span>
+    <span class="k">Given</span> I have entered <span class="o">&lt;</span><span class="ss">input_1</span><span class="o">&gt;</span> into the calculator
+    <span class="k">And</span> I have entered <span class="o">&lt;</span><span class="ss">input_2</span><span class="o">&gt;</span> into the calculator
+    <span class="k">When</span> I press <span class="o">&lt;</span><span class="ss">button</span><span class="o">&gt;</span>
+    <span class="k">Then</span> the result should be <span class="o">&lt;</span><span class="ss">output</span><span class="o">&gt;</span> on the screen
+
+  <span class="nc">Examples:</span>
+    |<span class="ss"> input_1</span> |<span class="ss"> input_2</span> |<span class="ss"> button</span> |<span class="ss"> output</span> |
+    | 20      | 30      | add    | 50     |
+    | 2       | 5       | add    | 7      |
+    | 0       | 40      | add    | 40     |
 </pre></div>
 
 </body></html>

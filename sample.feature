@@ -55,3 +55,36 @@ Feature: proof of concept
     # This is a comment
 # So is this with no space at front...
 
+Funktionalität: Addition
+  Um dumme Fehler zu vermeiden
+  möchte ich als Matheidiot
+  die Summe zweier Zahlen gesagt bekommen
+
+  Szenariogrundriss: Zwei Zahlen hinzufügen
+    Gegeben sei ich habe <Eingabe_1> in den Taschenrechner eingegeben
+    Und ich habe <Eingabe_2> in den Taschenrechner eingegeben
+    Wenn ich <Knopf> drücke
+    Dann sollte das Ergebniss auf dem Bildschirm <Ausgabe> sein
+
+  Beispiele:
+    | Eingabe_1 | Eingabe_2 | Knopf | Ausgabe |
+    | 20        | 30        | add   | 50      |
+    | 2         | 5         | add   | 7       |
+    | 0         | 40        | add   | 40      |
+
+Feature: Addition
+  In order to avoid silly mistakes
+  As a math idiot 
+  I want to be told the sum of two numbers
+
+  Scenario Outline: Add two numbers
+    Given I have entered <input_1> into the calculator
+    And I have entered <input_2> into the calculator
+    When I press <button>
+    Then the result should be <output> on the screen
+
+  Examples:
+    | input_1 | input_2 | button | output |
+    | 20      | 30      | add    | 50     |
+    | 2       | 5       | add    | 7      |
+    | 0       | 40      | add    | 40     |

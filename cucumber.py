@@ -73,7 +73,7 @@ class GherkinLexer(RegexLexer):
 
 def main():
   code = open(sys.argv[1]).read()
-  print highlight(code, GherkinLexer(), HtmlFormatter())
+  print highlight(code, GherkinLexer(), HtmlFormatter(encoding='utf-8'))
 
 if __name__ == "__main__":
   main()
