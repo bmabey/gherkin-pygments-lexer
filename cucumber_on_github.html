@@ -6,15 +6,15 @@
   I want to have syntax highlighting for Gherkin
 
   <span class="nc">Background:</span><span class="no"> this is description</span>
-    <span class="k">Given</span> cheese is good
+<span class="no">    </span><span class="k">Given</span> cheese is good
 
   <span class="nc">Background:</span><span class="no"> this is multi-line description</span>
-    do you like it?
-    <span class="k">Given</span> cheese is good
+<span class="no">    do you like it?</span>
+<span class="no">    </span><span class="k">Given</span> cheese is good
 
   <span class="nc">Scenario Outline:</span><span class="no"> this is a test </span>
-                    this the second line of the desctiption
-    <span class="k">Given</span> I have a <span class="o">&lt;</span><span class="ss">var1</span><span class="o">&gt;</span> and some <span class="s">&quot;string&quot;</span>
+<span class="no">                    this the second line of the desctiption</span>
+<span class="no">    </span><span class="k">Given</span> I have a <span class="o">&lt;</span><span class="ss">var1</span><span class="o">&gt;</span> and some <span class="s">&quot;string&quot;</span>
     <span class="k">And</span> the following table and some <span class="s">&#39;string&#39;</span>
       | header 1  | header 2  | <span class="c"># here is a comment after a table</span>
       | cell 1-1  | cell 1-2  |
@@ -39,17 +39,17 @@
     | foo   |  bar   |
     | dog   |  food  |
 
-  <span class="nc">Scenarios:</span><span class="no"> some other examples with a description</span><span class="ss"></span>
-<span class="ss">             and guess waht?!? I can have multilines as well!</span>
-<span class="ss">             Who would have thunk?</span>
+  <span class="nc">Scenarios:</span><span class="no"> some other examples with a description</span>
+<span class="no">             and guess waht?!? I can have multilines as well!</span>
+<span class="no">             Who would have thunk?</span>
     |<span class="ss"> var1</span>  |<span class="ss">  var2</span>  |
     | foo   |  bar   |
     | dog   |  food  |
 
   <span class="o">@some_tag</span> <span class="o">@another_tag</span>
   <span class="nc">Scenario:</span><span class="no"> more examples</span>
-            will follow after this multi-line description
-    <span class="k">Given</span> some context<span class="c"># this is an inline comment</span>
+<span class="no">            will follow after this multi-line description</span>
+<span class="no">    </span><span class="k">Given</span> some context<span class="c"># this is an inline comment</span>
     <span class="c"># This is a comment</span>
 <span class="c"># So is this with no space at front...</span>
 </pre></div>
