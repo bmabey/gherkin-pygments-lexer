@@ -30,8 +30,7 @@ class GherkinLexer(RegexLexer):
             ],
         'narrative': [
             (r'(\s+)(Background|Scenario|Scenario Outline)(:)(.*)$', bygroups(Text, Name.Class, Name.Class, Name.Constant), "#pop"),
-            (r"\s", Comment),
-            (r".", Comment),
+            (r"(\s|.)", Name.Builtin),
           ],
         'root': [
             (r'\n', Text),
