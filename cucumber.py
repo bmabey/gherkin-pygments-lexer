@@ -11,20 +11,23 @@ class GherkinLexer(RegexLexer):
     filenames = ['*.feature', '*.story']
 
     tokens = {
-        #'step_table_header': [
-            #(r"\s+\|\s*$", Text, "#pop"),
-            #(r"[^\|]", Literal.String.Symbol),
-            #],
+        'comments': [
+            (r'#.*$', Comment),
+          ],
         'multiline_descriptions' : [
             (r'(Given|When|Then|And|But)', Keyword, "#pop"),
+            include('comments'),
             (r"(\s|.)", Name.Constant),
             ],
         'scenario_table_description': [
             (r"\s+\|", Text, 'scenario_table_header'),
+            include('comments'),
             (r"(\s|.)", Name.Constant),
             ],
         'scenario_table_header': [
             (r"\s+\|\s*$", Text, "#pop:2"),
+            (r"(\s+\|\s*)(#.*)$", bygroups(Text, Comment), "#pop:2"),
+            include('comments'),
             (r"\s+\|", Text),
             (r"[^\|]", Literal.String.Symbol),
             ],
@@ -50,11 +53,11 @@ class GherkinLexer(RegexLexer):
           ],
         'root': [
             (r'\n', Text),
+            include('comments'),
             (r'"""', String, "py_string"),
             (r'"', String, "double_string"),
             (r"'", String, "single_string"),
             (r'(<)([^>]*)(>)', bygroups(Operator, Literal.String.Symbol, Operator)),
-            (r'#.*$', Comment),
             (r'@[^@\s]+', Name.Namespace),
             (r'(Given|When|Then|And|But)', Keyword),
             (r'^(Feature|Story)(:)(.*)$', bygroups(Name.Class, Name.Class, Name.Constant), 'narrative'),

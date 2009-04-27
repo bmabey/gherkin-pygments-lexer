@@ -4,6 +4,7 @@ Feature: proof of concept
   In order to read Cucumber features faster and eaiser on Github 
   As a Cucumber user
   I want to have syntax highlighting for Gherkin
+  This is part of the narrative, even if I have the # symbol, it is still the narrative- not a comment
 
   Background: this is description
     Given cheese is good
@@ -36,12 +37,12 @@ Feature: proof of concept
     But not something else...
 
   Examples:
-    | var1  |  var2  |
+    | var1  |  var2  | # i am a comment
     | foo   |  bar   |
     | dog   |  food  |
 
   Scenarios: some other examples with a description
-             and guess waht?!? I can have multilines as well!
+             and guess waht?!? I can have multilines as well!  # look at me, I'm a comment
              Who would have thunk?
     | var1  |  var2  |
     | foo   |  bar   |
