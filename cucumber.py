@@ -17,13 +17,11 @@ class GherkinLexer(RegexLexer):
             #],
         'multiline_descriptions' : [
             (r'(Given|When|Then|And|But)', Keyword, "#pop"),
-            (r"\s", Name.Constant),
-            (r".", Name.Constant),
+            (r"(\s|.)", Name.Constant),
             ],
         'scenario_table_description': [
             (r"\s+\|", Text, 'scenario_table_header'),
-            (r"\s", Name.Constant),
-            (r".", Name.Constant),
+            (r"(\s|.)", Name.Constant),
             ],
         'scenario_table_header': [
             (r"\s+\|\s*$", Text, "#pop:2"),
@@ -32,7 +30,8 @@ class GherkinLexer(RegexLexer):
             ],
         'narrative': [
             (r'(\s+)(Background|Scenario|Scenario Outline)(:)(.*)$', bygroups(Text, Name.Class, Name.Class, Name.Constant), "#pop"),
-            (r'.', Comment),
+            (r"\s", Comment),
+            (r".", Comment),
           ],
         'root': [
             (r'\n', Text),
@@ -40,13 +39,12 @@ class GherkinLexer(RegexLexer):
             (r"('[^']*')", String),
             (r'(<)([^>]*)(>)', bygroups(Operator, Literal.String.Symbol, Operator)),
             (r'#.*$', Comment),
-            (r'@\w+', Operator),
+            (r'@\w+', Name.Namespace),
             (r'(Given|When|Then|And|But)', Keyword),
-            (r'^(Feature|Story)(:)(.*)$', bygroups(Name.Class, Name.Class, Name.Constant)),
+            (r'^(Feature|Story)(:)(.*)$', bygroups(Name.Class, Name.Class, Name.Constant), 'narrative'),
             (r'(\s+)(Background|Scenario|Scenario Outline)(:)(.*)$', bygroups(Text, Name.Class, Name.Class, Name.Constant), "multiline_descriptions"),
             (r'(\s+)(Scenarios|Examples)(:)(.*)$', bygroups(Text, Name.Class, Name.Class, Name.Constant), "scenario_table_description"),
-            (r'\s', Text),
-            (r'.', Text)
+            (r'(\s|.)', Text),
         ]
 
     }
