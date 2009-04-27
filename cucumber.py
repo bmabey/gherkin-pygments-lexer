@@ -10,17 +10,20 @@ class GherkinLexer(RegexLexer):
     aliases = ['Cucumber', 'cucumber', 'gherkin', 'bdd']
     filenames = ['*.feature', '*.story']
 
+    step_keywords_regexp = r'(Given|When|Then|And|But)'
+    scenario_sections_regexp = r'(\s+)(Background|Scenario|Scenario Outline)(:)(.*)$'
+
     tokens = {
         'comments': [
             (r'#.*$', Comment),
           ],
         'multiline_descriptions' : [
-            (r'(Given|When|Then|And|But)', Keyword, "#pop"),
+            (step_keywords_regexp, Keyword, "#pop"),
             include('comments'),
             (r"(\s|.)", Name.Constant),
           ],
         'multiline_descriptions_on_stack' : [
-          (r'(Given|When|Then|And|But)', Keyword, "#pop:2"),
+          (step_keywords_regexp, Keyword, "#pop:2"),
             include('comments'),
             (r"(\s|.)", Name.Constant),
           ],
@@ -37,7 +40,7 @@ class GherkinLexer(RegexLexer):
             (r"[^\|]", Literal.String.Symbol),
           ],
         'scenario_sections_on_stack': [
-            (r'(\s+)(Background|Scenario|Scenario Outline)(:)(.*)$', bygroups(Text, Name.Class, Name.Class, Name.Constant), "multiline_descriptions_on_stack"),
+            (scenario_sections_regexp, bygroups(Text, Name.Class, Name.Class, Name.Constant), "multiline_descriptions_on_stack"),
             ],
         'narrative': [
             include('scenario_sections_on_stack'),
@@ -70,9 +73,9 @@ class GherkinLexer(RegexLexer):
             (r"'", String, "single_string"),
             include('table_vars'),
             (r'@[^@\s]+', Name.Namespace),
-            (r'(Given|When|Then|And|But)', Keyword),
+            (step_keywords_regexp, Keyword),
             (r'^(Feature|Story)(:)(.*)$', bygroups(Name.Class, Name.Class, Name.Constant), 'narrative'),
-            (r'(\s+)(Background|Scenario|Scenario Outline)(:)(.*)$', bygroups(Text, Name.Class, Name.Class, Name.Constant), "multiline_descriptions"),
+            (scenario_sections_regexp, bygroups(Text, Name.Class, Name.Class, Name.Constant), "multiline_descriptions"),
             (r'(\s+)(Scenarios|Examples)(:)(.*)$', bygroups(Text, Name.Class, Name.Class, Name.Constant), "scenario_table_description"),
             (r'(\s|.)', Text),
         ]
