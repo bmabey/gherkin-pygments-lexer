@@ -32,10 +32,26 @@ class GherkinLexer(RegexLexer):
             (r'(\s+)(Background|Scenario|Scenario Outline)(:)(.*)$', bygroups(Text, Name.Class, Name.Class, Name.Constant), "#pop"),
             (r"(\s|.)", Name.Builtin),
           ],
+        'py_string': [
+            (r'"""', String, "#pop"),
+            (r'(<)([^>]*)(>)', bygroups(Operator, Literal.String.Symbol, Operator)),
+            (r'(\s|.)', String),
+          ],
+        'double_string': [
+            (r'"', String, "#pop"),
+            (r'(<)([^>]*)(>)', bygroups(Operator, Literal.String.Symbol, Operator)),
+            (r'(\s|.)', String),
+          ],
+        'single_string': [
+            (r"'", String, "#pop"),
+            (r'(<)([^>]*)(>)', bygroups(Operator, Literal.String.Symbol, Operator)),
+            (r"(\s|.)", String),
+            ],
         'root': [
             (r'\n', Text),
-            (r'("[^"]*")', String),
-            (r"('[^']*')", String),
+            (r'"""', String, "py_string"),
+            (r'"', String, "double_string"),
+            (r"'", String, "single_string"),
             (r'(<)([^>]*)(>)', bygroups(Operator, Literal.String.Symbol, Operator)),
             (r'#.*$', Comment),
             (r'@\w+', Name.Namespace),

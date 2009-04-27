@@ -28,7 +28,8 @@ Feature: proof of concept
     """
     Hello!
     I am a multiple line string, often called a pystring.
-    I can sub in vars as well like: <var1> and <var2>
+    I can have regular "double quotes" without a problem...
+    I can also sub in vars as well like: <var1> and <var2>
     """
 
     Then I should see something...
