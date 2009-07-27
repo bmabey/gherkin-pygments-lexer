@@ -1,10 +1,16 @@
+h1. Gherkin Syntax Lexer for Pygments
+
 This is a "pygments":http://pygments.org/ lexer for Gherkin- the language that "Cucumber":http://cukes.info knows.
 
 For an idea of what it looks like "click here.":http://www.benmabey.com/cucumber_on_github.html
 
-Once I am happy with it I will submit a patch to pygments so that Github will start syntax highlighting all *.feature files!
+h2. Installing
 
-Please send me any suggestions you have on how to improve it.. Pull requests are even better. ;)
+sudo python setup.py install
+
+h2. Making Perty Cucumber features
+
+pygmentize foo.feature
 
 **TODO**
 * Generate keywords for all languages like we do in the TM bundle.
