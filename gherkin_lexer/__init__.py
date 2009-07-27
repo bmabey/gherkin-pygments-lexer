@@ -1,13 +1,11 @@
 #!/usr/bin/env python
 from pygments.lexer import RegexLexer, bygroups, include
-from pygments.token import *
-from pygments import highlight
-from pygments.formatters import HtmlFormatter
-import sys
+from pygments.token import \
+     Text, Comment, Literal, Operator, Keyword, Name, String
 
 class GherkinLexer(RegexLexer):
     name = 'Gherkin'
-    aliases = ['Cucumber', 'cucumber', 'gherkin', 'bdd']
+    aliases = ['Cucumber', 'cucumber', 'Gherkin', 'gherkin']
     filenames = ['*.feature', '*.story']
 
     step_keywords_regexp = r'(Given|When|Then|And|But)'
@@ -81,13 +79,3 @@ class GherkinLexer(RegexLexer):
         ]
 
     }
-
-def main():
-  code = open(sys.argv[1]).read()
-  print highlight(code, GherkinLexer(), HtmlFormatter(encoding='utf-8'))
-
-if __name__ == "__main__":
-  main()
-
-
-
