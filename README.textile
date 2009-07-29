@@ -6,6 +6,7 @@ For an idea of what it looks like "click here.":http://www.benmabey.com/cucumber
 
 h2. Installing
 
+rake generate
 sudo python setup.py install
 
 h2. Making Perty Cucumber features
