@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 from pygments.lexer import RegexLexer, bygroups, include
 from pygments.token import \
      Text, Comment, Literal, Operator, Keyword, Name, String
@@ -8,8 +9,8 @@ class GherkinLexer(RegexLexer):
     aliases = ['Cucumber', 'cucumber', 'Gherkin', 'gherkin']
     filenames = ['*.feature', '*.story']
 
-    step_keywords_regexp = r'(\s+)(<%= step_keywords %>)'
-    scenario_sections_regexp = r'(\s+)(<%= scenario_keywords %>)(:)(.*)$'
+    step_keywords_regexp = ur'(\s+)(<%= step_keywords %>)'
+    scenario_sections_regexp = ur'(\s+)(<%= scenario_keywords %>)(:)(.*)$'
 
     tokens = {
         'comments': [
