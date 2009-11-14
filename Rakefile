@@ -4,19 +4,27 @@ class SyntaxGenerator
     require 'erb'
     require 'cucumber'
 
+    feature_keywords_array = []
     scenario_keywords_array = []
+    examples_keywords_array = []
     step_keywords_array     = []
 
     Cucumber::LANGUAGES.each do |lang, words|
+      feature_keywords_array << words.delete('feature').split(/\|/) rescue nil
+
       scenario_keywords_array << words.delete('scenario').split(/\|/) rescue nil
       scenario_keywords_array << words.delete('scenario_outline').split(/\|/) rescue nil
       scenario_keywords_array << words.delete('background').split(/\|/) rescue nil
 
+      examples_keywords_array << words.delete('examples').split(/\|/) rescue nil
+
       step_keywords_array << keywords(lang, words)
     end
     
+    feature_keywords  = feature_keywords_array.flatten.compact.sort.reverse.uniq.join('|')
     scenario_keywords = scenario_keywords_array.flatten.compact.sort.reverse.uniq.join('|')
-    step_keywords     =     step_keywords_array.flatten.compact.sort.reverse.uniq.join('|')
+    examples_keywords = examples_keywords_array.flatten.compact.sort.reverse.uniq.join('|')
+    step_keywords     = step_keywords_array.flatten.compact.sort.reverse.uniq.join('|')
 
     template    = ERB.new(IO.read(File.dirname(__FILE__) + '/lexer.erb.py'))
     syntax      = template.result(binding)
