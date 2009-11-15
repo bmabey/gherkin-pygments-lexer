@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Setup for the Gherkin Pygments Lexer
 """

@@ -48,7 +48,7 @@ class GherkinLexer(RegexLexer):
             (r"(\s|.)", Name.Builtin),
           ],
         'table_vars': [
-            (r'(<)([^>]*)(>)', bygroups(Operator, Literal.String.Symbol, Operator)),
+            (r'(<[^>]*>)', bygroups(Literal.String.Symbol)),
           ],
         'string': [
             include('table_vars'),
