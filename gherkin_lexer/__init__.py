@@ -24,7 +24,7 @@ class GherkinLexer(RegexLexer):
             (r"(\s|.)", Name.Constant),
           ],
         'multiline_descriptions_on_stack' : [
-          (step_keywords_regexp, Keyword, "#pop:2"),
+            (step_keywords_regexp, Keyword, "#pop:2"),
             include('comments'),
             (r"(\s|.)", Name.Constant),
           ],
