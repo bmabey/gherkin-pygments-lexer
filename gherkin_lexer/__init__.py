@@ -5,9 +5,13 @@ from pygments.token import \
      Text, Comment, Literal, Operator, Keyword, Name, String
 
 class GherkinLexer(RegexLexer):
+    """
+    For `Gherkin <http://cukes.info/>` syntax.
+    """
     name = 'Gherkin'
     aliases = ['Cucumber', 'cucumber', 'Gherkin', 'gherkin']
-    filenames = ['*.feature', '*.story']
+    filenames = ['*.feature']
+    mimetypes = ['text/x-gherkin']
 
     feature_keywords_regexp  = ur'^(기능|機能|功能|フィーチャ|خاصية|תכונה|Функционалност|Функционал|Особина|Могућност|Özellik|Właściwość|Tính năng|Savybė|Požiadavka|Požadavek|Osobina|Ominaisuus|Omadus|OH HAI|Mogućnost|Mogucnost|Jellemző|Fīča|Funzionalità|Funktionalität|Funkcionalnost|Funkcionalitāte|Funcționalitate|Functionaliteit|Functionalitate|Funcionalidade|Fonctionnalité|Fitur|Feature|Egenskap|Egenskab|Crikey|Característica|Arwedd)(:)(.*)$'
     scenario_sections_regexp = ur'^(\s*)(시나리오 개요|시나리오|배경|背景|場景大綱|場景|场景大纲|场景|劇本大綱|劇本|テンプレ|シナリオテンプレート|シナリオテンプレ|シナリオアウトライン|シナリオ|سيناريو مخطط|سيناريو|الخلفية|תרחיש|תבנית תרחיש|רקע|Тарих|Сценарио|Сценарий структураси|Сценарий|Структура сценарија|Структура сценария|Скица|Рамка на сценарий|Пример|Предыстория|Предистория|Позадина|Основа|Концепт|Контекст|Założenia|Tình huống|Tausta|Taust|Tapausaihio|Tapaus|Szenariogrundriss|Szenario|Szablon scenariusza|Stsenaarium|Struktura scenarija|Skica|Skenario konsep|Skenario|Situācija|Senaryo taslağı|Senaryo|Scénář|Scénario|Schema dello scenario|Scenārijs pēc parauga|Scenārijs|Scenár|Scenariusz|Scenariul de şablon|Scenariul de sablon|Scenariu|Scenario Outline|Scenario|Scenarijus|Scenarijaus šablonas|Scenarij|Scenarie|Rerefons|Raamstsenaarium|Primer|Pozadí|Pozadina|Pozadie|Plan du Scénario|Osnova scénáře|Osnova|Náčrt Scénáře|Náčrt Scenáru|Mate|MISHUN SRSLY|MISHUN|Kịch bản|Kontext|Konteksts|Kontekstas|Kontekst|Koncept|Khung tình huống|Khung kịch bản|Háttér|Grundlage|Geçmiş|Forgatókönyv vázlat|Forgatókönyv|Esquema do Cenário|Esquema do Cenario|Esquema del escenario|Esquema de l\'escenari|Escenario|Escenari|Dasar|Contexto|Contexte|Contesto|Condiţii|Conditii|Cenário|Cenario|Bối cảnh|Blokes|Bakgrunn|Bakgrund|Baggrund|Background|B4|Antecedents|Antecedentes|All y\'all|Achtergrond|Abstrakt Scenario|Abstract Scenario)(:)(.*)$'
@@ -38,7 +42,7 @@ class GherkinLexer(RegexLexer):
             (r"(\s+\|\s*)(#.*)$", bygroups(Text, Comment), "#pop:2"),
             include('comments'),
             (r"\s+\|", Text),
-            (r"[^\|]", Literal.String.Symbol),
+            (r"[^\|]", Name.Variable),
           ],
         'scenario_sections_on_stack': [
             (scenario_sections_regexp, bygroups(Text, Name.Class, Name.Class, Name.Constant), "multiline_descriptions_on_stack"),
@@ -48,7 +52,7 @@ class GherkinLexer(RegexLexer):
             (r"(\s|.)", Name.Builtin),
           ],
         'table_vars': [
-            (r'(<[^>]*>)', bygroups(Literal.String.Symbol)),
+            (r'(<[^>]*>)', bygroups(Name.Variable)),
           ],
         'string': [
             include('table_vars'),
