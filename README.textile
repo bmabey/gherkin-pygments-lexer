@@ -6,13 +6,12 @@ For an idea of what it looks like "click here.":http://www.benmabey.com/cucumber
 
 h2. Installing
 
-rake generate
 sudo python setup.py install
 
 h2. Making Perty Cucumber features
 
 pygmentize foo.feature
 
-**TODO**
-* Generate keywords for all languages like we do in the TM bundle.
-* Maybe color the headers for the step tables differently?
+h2. Hacking
+
+Edit lexer.erb.py, then run rake generate

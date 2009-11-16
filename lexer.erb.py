@@ -10,9 +10,9 @@ class GherkinLexer(RegexLexer):
     filenames = ['*.feature', '*.story']
 
     feature_keywords_regexp  = ur'^(<%= feature_keywords %>)(:)(.*)$'
-    scenario_sections_regexp = ur'(\s+)(<%= scenario_keywords %>)(:)(.*)$'
-    examples_regexp          = ur'(\s+)(<%= examples_keywords %>)(:)(.*)$'
-    step_keywords_regexp     = ur'(\s+)(<%= step_keywords %>)'
+    scenario_sections_regexp = ur'^(\s*)(<%= scenario_keywords %>)(:)(.*)$'
+    examples_regexp          = ur'^(\s*)(<%= examples_keywords %>)(:)(.*)$'
+    step_keywords_regexp     = ur'^(\s*)(<%= step_keywords %>)'
 
     tokens = {
         'comments': [
