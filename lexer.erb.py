@@ -9,8 +9,10 @@ class GherkinLexer(RegexLexer):
     aliases = ['Cucumber', 'cucumber', 'Gherkin', 'gherkin']
     filenames = ['*.feature', '*.story']
 
-    step_keywords_regexp = ur'(\s+)(<%= step_keywords %>)'
+    feature_keywords_regexp  = ur'^(<%= feature_keywords %>)(:)(.*)$'
     scenario_sections_regexp = ur'(\s+)(<%= scenario_keywords %>)(:)(.*)$'
+    examples_regexp          = ur'(\s+)(<%= examples_keywords %>)(:)(.*)$'
+    step_keywords_regexp     = ur'(\s+)(<%= step_keywords %>)'
 
     tokens = {
         'comments': [
@@ -73,9 +75,9 @@ class GherkinLexer(RegexLexer):
             include('table_vars'),
             (r'@[^@\s]+', Name.Namespace),
             (step_keywords_regexp, bygroups(Text, Keyword)),
-            (r'^(Feature|Story)(:)(.*)$', bygroups(Name.Class, Name.Class, Name.Constant), 'narrative'),
+            (feature_keywords_regexp, bygroups(Name.Class, Name.Class, Name.Constant), 'narrative'),
             (scenario_sections_regexp, bygroups(Text, Name.Class, Name.Class, Name.Constant), "multiline_descriptions"),
-            (r'(\s+)(Scenarios|Examples)(:)(.*)$', bygroups(Text, Name.Class, Name.Class, Name.Constant), "scenario_table_description"),
+            (examples_regexp, bygroups(Text, Name.Class, Name.Class, Name.Constant), "scenario_table_description"),
             (r'(\s|.)', Text),
         ]
 
