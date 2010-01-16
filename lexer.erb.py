@@ -71,7 +71,7 @@ class GherkinLexer(RegexLexer):
             include('comments'),
             (r'"""', String, "py_string"),
             (r'"', String, "double_string"),
-            (r"'", String, "single_string"),
+            #(r"'", String, "single_string"),
             include('table_vars'),
             (r'@[^@\s]+', Name.Namespace),
             (step_keywords_regexp, bygroups(Text, Keyword)),
