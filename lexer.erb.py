@@ -13,22 +13,22 @@ class GherkinLexer(RegexLexer):
     filenames = ['*.feature']
     mimetypes = ['text/x-gherkin']
 
-    feature_keywords_regexp  = ur'^(<%= feature_keywords %>)(:)(.*)$'
-    scenario_keywords_regexp = ur'^(\s*)(<%= scenario_keywords %>)(:)(.*)$'
-    examples_regexp          = ur'^(\s*)(<%= examples_keywords %>)(:)(.*)$'
-    step_keywords_regexp     = ur'^(\s*)(<%= step_keywords %>)'
+    feature_keywords         = ur'^(<%= Gherkin::I18n.keyword_regexp(:feature) %>)(:)(.*)$'
+    feature_element_keywords = ur'^(\s*)(<%= Gherkin::I18n.keyword_regexp(:background, :scenario, :scenario_outline) %>)(:)(.*)$'
+    examples_keywords        = ur'^(\s*)(<%= Gherkin::I18n.keyword_regexp(:examples) %>)(:)(.*)$'
+    step_keywords            = ur'^(\s*)(<%= Gherkin::I18n.keyword_regexp(:step) %>)'
 
     tokens = {
         'comments': [
             (r'#.*$', Comment),
           ],
         'multiline_descriptions' : [
-            (step_keywords_regexp, Keyword, "#pop"),
+            (step_keywords, Keyword, "#pop"),
             include('comments'),
             (r"(\s|.)", Name.Constant),
           ],
         'multiline_descriptions_on_stack' : [
-            (step_keywords_regexp, Keyword, "#pop:2"),
+            (step_keywords, Keyword, "#pop:2"),
             include('comments'),
             (r"(\s|.)", Name.Constant),
           ],
@@ -45,7 +45,7 @@ class GherkinLexer(RegexLexer):
             (r"[^\|]", Name.Variable),
           ],
         'scenario_sections_on_stack': [
-            (scenario_keywords_regexp, bygroups(Text, Name.Class, Name.Class, Name.Constant), "multiline_descriptions_on_stack"),
+            (feature_element_keywords, bygroups(Text, Name.Class, Name.Class, Name.Constant), "multiline_descriptions_on_stack"),
             ],
         'narrative': [
             include('scenario_sections_on_stack'),
@@ -73,10 +73,10 @@ class GherkinLexer(RegexLexer):
             (r'"', String, "double_string"),
             include('table_vars'),
             (r'@[^@\s]+', Name.Namespace),
-            (step_keywords_regexp, bygroups(Text, Keyword)),
-            (feature_keywords_regexp, bygroups(Name.Class, Name.Class, Name.Constant), 'narrative'),
-            (scenario_keywords_regexp, bygroups(Text, Name.Class, Name.Class, Name.Constant), "multiline_descriptions"),
-            (examples_regexp, bygroups(Text, Name.Class, Name.Class, Name.Constant), "scenario_table_description"),
+            (step_keywords, bygroups(Text, Keyword)),
+            (feature_keywords, bygroups(Name.Class, Name.Class, Name.Constant), 'narrative'),
+            (feature_element_keywords, bygroups(Text, Name.Class, Name.Class, Name.Constant), "multiline_descriptions"),
+            (examples_keywords, bygroups(Text, Name.Class, Name.Class, Name.Constant), "scenario_table_description"),
             (r'(\s|.)', Text),
         ]
     }
