@@ -13,10 +13,10 @@ class GherkinLexer(RegexLexer):
     filenames = ['*.feature']
     mimetypes = ['text/x-gherkin']
 
-    feature_keywords         = ur'^(<%= Gherkin::I18n.keyword_regexp(:feature) %>)(:)(.*)$'
-    feature_element_keywords = ur'^(\s*)(<%= Gherkin::I18n.keyword_regexp(:background, :scenario, :scenario_outline) %>)(:)(.*)$'
-    examples_keywords        = ur'^(\s*)(<%= Gherkin::I18n.keyword_regexp(:examples) %>)(:)(.*)$'
-    step_keywords            = ur'^(\s*)(<%= Gherkin::I18n.keyword_regexp(:step) %>)'
+    feature_keywords         = ur'^(<%= gherkin_keywords(:feature) %>)(:)(.*)$'
+    feature_element_keywords = ur'^(\s*)(<%= gherkin_keywords(:background, :scenario, :scenario_outline) %>)(:)(.*)$'
+    examples_keywords        = ur'^(\s*)(<%= gherkin_keywords(:examples) %>)(:)(.*)$'
+    step_keywords            = ur'^(\s*)(<%= gherkin_keywords(:step) %>)'
 
     tokens = {
         'comments': [

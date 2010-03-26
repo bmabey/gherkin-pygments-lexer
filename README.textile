@@ -2,16 +2,15 @@ h1. Gherkin Syntax Lexer for Pygments
 
 This is a "pygments":http://pygments.org/ lexer for Gherkin- the language that "Cucumber":http://cukes.info knows.
 
-For an idea of what it looks like "click here.":http://www.benmabey.com/cucumber_on_github.html
-
 h2. Installing
 
-sudo python setup.py install
+The lexer is part of the Pygments codebase. Pygments gets updated when there are major changes in this repo,
+for example when a new translation is added to Gherkin.
 
-h2. Making Perty Cucumber features
+h2. Making Pretty Cucumber features
 
 pygmentize foo.feature
 
 h2. Hacking
 
-Edit lexer.erb.py, then run rake generate
+Edit lexer.erb.py, then run rake
