@@ -32,21 +32,20 @@ class GherkinLexer(RegexLexer):
             include('comments'),
             (r"(\s|.)", Name.Constant),
           ],
-        'scenario_table_description': [
-            (r"\s+\|", Keyword, 'scenario_table_header'),
+        'examples_table': [
+            (r"\s+\|", Keyword, 'examples_table_header'),
             include('comments'),
             (r"(\s|.)", Name.Constant),
           ],
-        'scenario_table_header': [
+        'examples_table_header': [
             (r"\s+\|\s*$", Keyword, "#pop:2"),
-            (r"(\s+\|\s*)(#.*)$", bygroups(Keyword, Comment), "#pop:2"),
             include('comments'),
             (r"\s+\|", Keyword),
             (r"[^\|]", Name.Variable),
           ],
         'scenario_sections_on_stack': [
             (feature_element_keywords, bygroups(Text, Name.Class, Name.Class, Name.Constant), "multiline_descriptions_on_stack"),
-            ],
+          ],
         'narrative': [
             include('scenario_sections_on_stack'),
             (r"(\s|.)", Name.Builtin),
@@ -76,7 +75,7 @@ class GherkinLexer(RegexLexer):
             (step_keywords, bygroups(Text, Keyword)),
             (feature_keywords, bygroups(Name.Class, Name.Class, Name.Constant), 'narrative'),
             (feature_element_keywords, bygroups(Text, Name.Class, Name.Class, Name.Constant), "multiline_descriptions"),
-            (examples_keywords, bygroups(Text, Name.Class, Name.Class, Name.Constant), "scenario_table_description"),
+            (examples_keywords, bygroups(Text, Name.Class, Name.Class, Name.Constant), "examples_table"),
             (r'(\s|.)', Text),
         ]
     }
