@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 def pygmentize(file)
   pygmentized = `pygmentize -f html -O encoding=utf-8 #{file}`
   File.open("#{file}.html", "wb") do |io|
