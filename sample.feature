@@ -14,10 +14,11 @@ Feature: proof of concept
                     this the second line of the desctiption
     Given I have a <var1> and some "string"
     And the following table and some 'string'
-      | header 1  | header 2  | # here is a comment after a step table header
-      | cell 1-1  | cell 1-2  | # here is a comment after a step table row
-      | cell 2-1  | "cell 2-2"|
-      | <var1>    | <var2>    |
+      | header 1    | header 2  | # here is a comment after a step table header
+      | cell 1-1    | cell 1-2  | # here is a comment after a step table row
+      | cell 2-1    | "cell 2-2"|
+      | <var1>      | <var2>    |
+      | foo@bar.com | stuff     |
 
     When I do <var2>
     And use apostrophes then the feature's syntax still looks good
@@ -34,6 +35,7 @@ Feature: proof of concept
 
     Then I should see something...
     But not something else...
+    And email addresses like foo@bar.com and "bar@foo.com" should not be highlighted like tags
 
   Examples:
     | var1  |  var2  | # i am a comment
