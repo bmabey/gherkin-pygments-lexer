@@ -61,6 +61,12 @@ class GherkinLexer(RegexLexer):
             (r'"""', Name.Class, "#pop"),
             include('string'),
           ],
+          'table_content': [
+            (r"\s+\|\s*$", Keyword, "#pop"),
+            include('comments'),
+            (r"\s+\|", Keyword),
+            include('string'),
+          ],
         'double_string': [
             (r'"', Text, "#pop"),
             include('string'),
@@ -69,6 +75,7 @@ class GherkinLexer(RegexLexer):
             (r'\n', Text),
             include('comments'),
             (r'"""', Name.Class, "py_string"),
+            (r'\s+\|', Keyword, 'table_content'),
             (r'"', Text, "double_string"),
             include('table_vars'),
             (r'@[^@\s]+', Name.Namespace),
