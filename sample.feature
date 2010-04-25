@@ -11,8 +11,9 @@ Feature: proof of concept
     Given cheese is good
 
   Scenario Outline: this is a test 
-                    this the second line of the desctiption
-    Given I have a <var1> and some "string"
+                    this the second line of the description
+    Given I am the first step after a multiline-description I should properly display foo@bar.com
+    And I have a <var1> and some "string"
     And the following table and some 'string'
       | header 1    | header 2  | # here is a comment after a step table header
       | cell 1-1    | cell 1-2  | # here is a comment after a step table row

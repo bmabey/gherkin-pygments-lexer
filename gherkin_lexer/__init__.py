@@ -61,6 +61,13 @@ class GherkinLexer(RegexLexer):
             (r'"""', Name.Class, "#pop"),
             include('string'),
           ],
+          'step_content':[
+            (r"$", Keyword, "#pop"),
+            (r'"', Text, "double_string"),
+            include('table_vars'),
+            include('comments'),
+            (r'(\s|.)', Text),
+          ],
           'table_content': [
             (r"\s+\|\s*$", Keyword, "#pop"),
             include('comments'),
@@ -79,7 +86,7 @@ class GherkinLexer(RegexLexer):
             (r'"', Text, "double_string"),
             include('table_vars'),
             (r'(\s*)(@[^@\r\n\t ]+)', bygroups(Text, Name.Namespace)),
-            (step_keywords, bygroups(Text, Keyword)),
+            (step_keywords, bygroups(Text, Keyword), "step_content"),
             (feature_keywords, bygroups(Name.Class, Name.Class, Name.Constant), 'narrative'),
             (feature_element_keywords, bygroups(Text, Name.Class, Name.Class, Name.Constant), "multiline_descriptions"),
             (examples_keywords, bygroups(Text, Name.Class, Name.Class, Name.Constant), "examples_table"),
