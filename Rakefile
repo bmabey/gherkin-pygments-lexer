@@ -1,3 +1,6 @@
+require 'rubygems'
+require 'launchy'
+
 desc 'Generate Gherkin lexer for all languages supported by Cucumber'
 task :i18n_generate do
   require 'erb'
@@ -31,6 +34,12 @@ end
 desc "Manually Eyeball the sample.feature"
 task :eyeball_sample => :install do
   sh "pygmentize sample.feature"
+end
+
+desc "Manually Eyeball the sample.feature in HTML"
+task :eyeball_sample_html => :install do
+  sh "#{File.dirname(__FILE__)}/bin/gherkinhtml.rb sample.feature"
+  Launchy::Browser.run("#{File.dirname(__FILE__)}/sample.html")
 end
 
 task :default => :eyeball_sample

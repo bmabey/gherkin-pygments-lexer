@@ -2,3 +2,4 @@ build
 dist
 Gherkin_Pygments_Lexer.egg-info
 *.sw?
+sample.html
