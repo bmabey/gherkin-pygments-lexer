@@ -17,6 +17,7 @@ Feature: proof of concept
       | header 1  | header 2  | # here is a comment after a step table header
       | cell 1-1  | cell 1-2  | # here is a comment after a step table row
       | cell 2-1  | "cell 2-2"|
+      | <var1>    | <var2>    |
 
     When I do <var2>
     And use apostrophes then the feature's syntax still looks good
