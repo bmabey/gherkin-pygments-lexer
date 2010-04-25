@@ -13,10 +13,10 @@ class GherkinLexer(RegexLexer):
     filenames = ['*.feature']
     mimetypes = ['text/x-gherkin']
 
-    feature_keywords         = ur'^(<%= Gherkin::I18n.keyword_regexp(:feature) %>)(:)(.*)$'
-    feature_element_keywords = ur'^(\s*)(<%= Gherkin::I18n.keyword_regexp(:background, :scenario, :scenario_outline) %>)(:)(.*)$'
-    examples_keywords        = ur'^(\s*)(<%= Gherkin::I18n.keyword_regexp(:examples) %>)(:)(.*)$'
-    step_keywords            = ur'^(\s*)(<%= Gherkin::I18n.keyword_regexp(:step) %>)'
+    feature_keywords         = ur'^(<%= gherkin_keywords(:feature) %>)(:)(.*)$'
+    feature_element_keywords = ur'^(\s*)(<%= gherkin_keywords(:background, :scenario, :scenario_outline) %>)(:)(.*)$'
+    examples_keywords        = ur'^(\s*)(<%= gherkin_keywords(:examples) %>)(:)(.*)$'
+    step_keywords            = ur'^(\s*)(<%= gherkin_keywords(:step) %>)'
 
     tokens = {
         'comments': [
@@ -33,15 +33,15 @@ class GherkinLexer(RegexLexer):
             (r"(\s|.)", Name.Constant),
           ],
         'scenario_table_description': [
-            (r"\s+\|", Text, 'scenario_table_header'),
+            (r"\s+\|", Keyword, 'scenario_table_header'),
             include('comments'),
             (r"(\s|.)", Name.Constant),
           ],
         'scenario_table_header': [
-            (r"\s+\|\s*$", Text, "#pop:2"),
-            (r"(\s+\|\s*)(#.*)$", bygroups(Text, Comment), "#pop:2"),
+            (r"\s+\|\s*$", Keyword, "#pop:2"),
+            (r"(\s+\|\s*)(#.*)$", bygroups(Keyword, Comment), "#pop:2"),
             include('comments'),
-            (r"\s+\|", Text),
+            (r"\s+\|", Keyword),
             (r"[^\|]", Name.Variable),
           ],
         'scenario_sections_on_stack': [
@@ -59,18 +59,18 @@ class GherkinLexer(RegexLexer):
             (r'(\s|.)', String),
           ],
         'py_string': [
-            (r'"""', String, "#pop"),
+            (r'"""', Name.Class, "#pop"),
             include('string'),
           ],
         'double_string': [
-            (r'"', String, "#pop"),
+            (r'"', Text, "#pop"),
             include('string'),
           ],
         'root': [
             (r'\n', Text),
             include('comments'),
-            (r'"""', String, "py_string"),
-            (r'"', String, "double_string"),
+            (r'"""', Name.Class, "py_string"),
+            (r'"', Text, "double_string"),
             include('table_vars'),
             (r'@[^@\s]+', Name.Namespace),
             (step_keywords, bygroups(Text, Keyword)),
