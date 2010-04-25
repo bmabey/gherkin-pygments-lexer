@@ -78,7 +78,7 @@ class GherkinLexer(RegexLexer):
             (r'\s+\|', Keyword, 'table_content'),
             (r'"', Text, "double_string"),
             include('table_vars'),
-            (r'@[^@\s]+', Name.Namespace),
+            (r'(\s*)(@[^@\r\n\t ]+)', bygroups(Text, Name.Namespace)),
             (step_keywords, bygroups(Text, Keyword)),
             (feature_keywords, bygroups(Name.Class, Name.Class, Name.Constant), 'narrative'),
             (feature_element_keywords, bygroups(Text, Name.Class, Name.Class, Name.Constant), "multiline_descriptions"),
