@@ -40,7 +40,7 @@ class GherkinLexer(RegexLexer):
         'examples_table_header': [
             (r"\s+\|\s*$", Keyword, "#pop:2"),
             include('comments'),
-            (r"\s+\|", Keyword),
+            (r"\s.\|", Keyword),
             (r"[^\|]", Name.Variable),
           ],
         'scenario_sections_on_stack': [
@@ -64,7 +64,7 @@ class GherkinLexer(RegexLexer):
           'table_content': [
             (r"\s+\|\s*$", Keyword, "#pop"),
             include('comments'),
-            (r"\s+\|", Keyword),
+            (r"\s*\|", Keyword),
             include('string'),
           ],
         'double_string': [
