@@ -1,7 +1,9 @@
 #!/usr/bin/env ruby
-def pygmentize(file)
+
+def pygmentize(file, destination=nil)
+  destination ||= "#{File.basename(file,".feature")}.html"
   pygmentized = `pygmentize -f html -O encoding=utf-8 #{file}`
-  File.open("#{file}.html", "wb") do |io|
+  File.open(destination, "wb") do |io|
     io.write(<<-EOF)
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -23,4 +25,6 @@ EOF
   end
 end
 
-pygmentize(ARGV[0])
+if $0 == __FILE__
+  pygmentize(*ARGV)
+end
