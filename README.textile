@@ -14,3 +14,13 @@ pygmentize foo.feature
 h2. Hacking
 
 Edit lexer.erb.py, then run rake
+
+h2. TOTO
+
+* Recognise Numbers
+* OK Triple-quotes and should be keywords
+* Table bars should be keywords
+* OK Single-quotes should have same colour as step name (not keyword - too many colours)
+* Cell values should be light orange
+** Except Scenario Outline header cells: Dark orange
+* All keywords should have same class
