@@ -77,6 +77,7 @@ class GherkinLexer(RegexLexer):
             (r'"', Text, "double_string"),
             include('table_vars'),
             include('comments'),
+            (r'(\d)', String),
             (r'(\s|.)', Text),
           ],
           'table_content': [
