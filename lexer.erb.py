@@ -23,12 +23,12 @@ class GherkinLexer(RegexLexer):
             (r'#.*$', Comment),
           ],
         'multiline_descriptions' : [
-            (step_keywords, Keyword, "step_content_stack"), # There must be a better way of doing this...
+            (step_keywords, Keyword, "step_content_stack"),
             include('comments'),
             (r"(\s|.)", Name.Constant),
           ],
         'multiline_descriptions_on_stack' : [
-            (step_keywords, Keyword, "#pop:2"),
+            (step_keywords, Keyword, "step_content_stack_3"),
             include('comments'),
             (r"(\s|.)", Name.Constant),
           ],
@@ -63,6 +63,10 @@ class GherkinLexer(RegexLexer):
           ],
           'step_content_root':[
             (r"$", Keyword, "#pop"),
+            include('step_content'),
+          ],
+          'step_content_stack_3':[
+            (r"$", Keyword, "#pop:3"),
             include('step_content'),
           ],
           'step_content_stack':[
